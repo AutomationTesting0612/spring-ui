@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql-standalone:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=company
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/mysql
+  springorm:
+    image: springorm
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-standalone
+    ports:
+      - 8080:8080
+    volumes:
+      - /data/springorm
