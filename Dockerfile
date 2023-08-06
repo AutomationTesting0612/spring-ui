@@ -13,5 +13,5 @@ COPY --from=build /target/springOrm1-0.0.1-SNAPSHOT.jar springorm.jar
 EXPOSE 8080
 #ENTRYPOINT ["java","-jar","springorm.jar"]
 
-RUN docker compose up -d
+RUN docker-compose up -d
 
