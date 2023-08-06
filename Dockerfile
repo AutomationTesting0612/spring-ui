@@ -11,9 +11,6 @@ FROM adoptopenjdk:8-jdk-hotspot
 COPY --from=build /target/springOrm1-0.0.1-SNAPSHOT.jar springorm.jar
 EXPOSE 8080
 
-
-COPY --from=build /app/my-application.jar /app/my-application.jar
-
 # Set the working directory
 WORKDIR /app
 ENTRYPOINT ["java","-jar","springorm.jar"]
