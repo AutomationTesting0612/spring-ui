@@ -36,12 +36,12 @@ public class StudentController {
 
     }
 
-    @PutMapping("/students")
-    public String update(@ModelAttribute("student") Student student){
-        studentService.addStudent(student);
-        return "redirect:/students";
-
-    }
+//    @PutMapping("/students")
+//    public String update(@ModelAttribute("student") Student student){
+//        studentService.updateStudent(student);
+//        return "redirect:/students";
+//
+//    }
 
     @DeleteMapping("/students")
     public String delete(@ModelAttribute("student") Student student){
@@ -50,34 +50,31 @@ public class StudentController {
 
     }
 
-//    @GetMapping("/students/edit/{id}")
-//    public String editStudentForm(@PathVariable Long id, Model model) {
-//        model.addAttribute("student", studentService.getStudentById(id));
-//        return "edit_student";
-//    }
+    @GetMapping("/students/edit/{id}")
+    public String editStudentForm(@PathVariable Long id, Model model) {
+        model.addAttribute("student", studentService.getStudentById(id));
+        return "edit_student";
+    }
 
-//    @PostMapping("/students/{id}")
-//    public String updateStudent(@PathVariable Long id,
-//                                @ModelAttribute("student") Student student,
-//                                Model model) {
-//
-//        // get student from database by id
-//        Student existingStudent = studentService.getStudentById(id);
-//        existingStudent.setId(id);
-//        existingStudent.setFirstName(student.getFirstName());
-//        existingStudent.setLastName(student.getLastName());
-//        existingStudent.setEmail(student.getEmail());
-//
-//        // save updated student object
-//        studentService.updateStudent(existingStudent);
-//        return "redirect:/students";
-//    }
+    @PostMapping("/students/{id}")
+    public String updateStudent(@PathVariable Long id,
+                                @ModelAttribute("student") Student student,
+                                Model model) {
 
-    // handler method to handle delete student request
+        // get student from database by id
+        Student existingStudent = studentService.getStudentById(id);
+        existingStudent.setId(id);
+        existingStudent.setFirstName(student.getFirstName());
+        existingStudent.setLastName(student.getLastName());
 
-//    @GetMapping("/students/{id}")
-//    public String deleteStudent(@PathVariable Long id) {
-//        studentService.(id);
-//        return "redirect:/students";
-//    }
+        // save updated student object
+        studentService.updateStudent(existingStudent);
+        return "redirect:/students";
+    }
+
+    @GetMapping("/students/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudentById(id);
+        return "redirect:/students";
+    }
 }
