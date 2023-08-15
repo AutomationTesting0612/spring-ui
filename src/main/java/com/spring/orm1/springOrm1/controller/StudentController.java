@@ -3,10 +3,7 @@ package com.spring.orm1.springOrm1.controller;
 
 import com.spring.orm1.springOrm1.entity.Student;
 import com.spring.orm1.springOrm1.service.StudentService;
-import com.spring.orm1.springOrm1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +14,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("login", userService.getAllUser());
+    public String login() {
         return "students";
     }
 
@@ -30,7 +24,6 @@ public class StudentController {
     public String logout() {
         return "logout";
     }
-
     @GetMapping("/students")
     public String getStudents(Model model){
         model.addAttribute("students", studentService.getAllStudent());
