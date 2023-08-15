@@ -3,6 +3,7 @@ package com.spring.orm1.springOrm1.controller;
 
 import com.spring.orm1.springOrm1.entity.Student;
 import com.spring.orm1.springOrm1.service.StudentService;
+import com.spring.orm1.springOrm1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,20 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("login", userService.getAllUser());
+        return "students";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "logout";
+    }
 
     @GetMapping("/students")
     public String getStudents(Model model){
